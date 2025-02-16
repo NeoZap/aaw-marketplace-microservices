@@ -1,5 +1,5 @@
-import * as schemaTenant from '@db/schema/tenant/tenants'
-import * as schemaTenantDetails from '@db/schema/tenant/tenantDetails'
+import * as schemaTenant from '@db/schema/tenants'
+import * as schemaTenantDetails from '@db/schema/tenantDetails'
 import { db } from '@src/db'
 import { eq } from 'drizzle-orm'
 
