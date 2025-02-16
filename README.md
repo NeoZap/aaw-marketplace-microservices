@@ -1,8 +1,8 @@
-# Marketplace API
+# Marketplace API (Microservices)
 
 ## Overview
 
-REST API for a marketplace application built with Express.js, PostgreSQL, and Drizzle ORM.
+REST API for a marketplace application built with Express.js, PostgreSQL, and Drizzle ORM. The API is split into multiple microservices for authentication, orders, products, tenants, and wishlists.
 
 ## Prerequisites
 
@@ -27,17 +27,8 @@ docker compose up
 ## Local Development Setup
 
 ```bash
-# Install dependencies
-pnpm install
-
-# Setup database
-pnpm run generate # Generate migrations
-
-pnpm run migrate # Run migrations
-
-# Start development server
-pnpm dev
-
+chmod +x start-and-migrate.sh
+./start-and-migrate.sh
 ```
 
 ## Environment Variables
@@ -67,19 +58,75 @@ pnpm generate # Generate DB migrations
 pnpm migrate # Run DB migrations
 ```
 
+## Microservice URL
+
+* Auth Microservice URL: http://localhost:8000
+* Orders Microservice URL: http://localhost:8001
+* Products Microservice URL: http://localhost:8002
+* Tenant Microservice URL: http://localhost:8003
+* Wishlist Microservice URL: http://localhost:8004
+
 ## API Endpoints
 
-Base URL: http://localhost:8000
-
-## Core endpoints
-
+* Authentication:
 ```
-GET /health - Health check
-GET / - API information
-GET /api/product - List products
-POST /api/auth - Authentication
-GET /api/order - Orders
-GET /api/cart - Shopping cart
+POST /api/auth/register
+POST /api/auth/login
+POST /api/auth/verify-token
+POST /api/auth/verify-admin-token
+GET /health
+GET /
+```
+* Orders Microservice:
+```
+GET /api/order
+GET /api/order/:orderId
+POST /api/order
+POST /api/order/:orderId/pay
+POST /api/order/:orderId/cancel
+GET /api/cart
+POST /api/cart
+PUT /api/cart
+DELETE /api/cart
+GET /health
+GET /
+```
+* Products Microservice:
+```
+GET /api/product
+GET /api/product/category
+GET /api/product/:id
+POST /api/product/many
+GET /api/product/category/:category_id
+POST /api/product
+POST /api/product/category
+PUT /api/product/:id
+PUT /api/product/category/:category_id
+DELETE /api/product/:id
+DELETE /api/product/category/:category_id
+GET /health
+GET /
+```
+* Tenant Microservice:
+```
+GET /api/tenant/:tenant_id
+POST /api/tenant
+PUT /api/tenant/:old_tenant_id
+DELETE /api/tenant
+GET /health
+GET /
+```
+* Wishlist Microservice:
+```
+GET /api/wishlist
+GET /api/wishlist/:id
+POST /api/wishlist
+PUT /api/wishlist/:id
+DELETE /api/wishlist/remove
+DELETE /api/wishlist/:id
+POST /api/wishlist/add
+GET /health
+GET /
 ```
 
 ## Database Schema
