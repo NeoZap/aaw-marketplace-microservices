@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  marketplace-ms-products:
+    build: .
+    ports:
+      - "8002:8000"
+    environment:
+      - TENANT_ID=47dd6b24-0b23-46b0-a662-776158d089ba
+      - JWT_SECRET=auth_ms_jwt_secret
+      - DB_HOST=products-db
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=marketplace-ms-products
+    depends_on:
+      - products-db
+
+  products-db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: marketplace-ms-products
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5434:5432"
+    volumes:
+      - products_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  products_postgres_data:

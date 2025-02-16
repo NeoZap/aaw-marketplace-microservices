@@ -1,0 +1,140 @@
+version: '3.8'
+
+services:
+  marketplace-ms-authentication:
+    build: ./authentication
+    ports:
+      - "8000:8000"
+    environment:
+      - TENANT_ID=47dd6b24-0b23-46b0-a662-776158d089ba
+      - JWT_SECRET=auth_ms_jwt_secret
+      - DB_HOST=authentication-db
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=postgres
+    depends_on:
+      - authentication-db
+
+  authentication-db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: marketplace-ms-authentication
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5437:5432"
+    volumes:
+      - authentication_postgres_data:/var/lib/postgresql/data
+
+  marketplace-ms-orders:
+    build: ./orders
+    ports:
+      - "8001:8000"
+    environment:
+      - TENANT_ID=47dd6b24-0b23-46b0-a662-776158d089ba
+      - JWT_SECRET=auth_ms_jwt_secret
+      - DB_HOST=orders-db
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=postgres
+      - PRODUCT_MS_URL=http://marketplace-ms-products:8000/api
+    depends_on:
+      - orders-db
+
+  orders-db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: marketplace-ms-orders
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - orders_postgres_data:/var/lib/postgresql/data
+
+  marketplace-ms-products:
+    build: ./products
+    ports:
+      - "8002:8000"
+    environment:
+      - TENANT_ID=47dd6b24-0b23-46b0-a662-776158d089ba
+      - JWT_SECRET=auth_ms_jwt_secret
+      - DB_HOST=products-db
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=postgres
+    depends_on:
+      - products-db
+
+  products-db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: marketplace-ms-products
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5434:5432"
+    volumes:
+      - products_postgres_data:/var/lib/postgresql/data
+
+  marketplace-ms-tenant:
+    build: ./tenant
+    ports:
+      - "8003:8000"
+    environment:
+      - TENANT_ID=47dd6b24-0b23-46b0-a662-776158d089ba
+      - JWT_SECRET=auth_ms_jwt_secret
+      - DB_HOST=tenant-db
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=postgres
+    depends_on:
+      - tenant-db
+
+  tenant-db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: marketplace-ms-tenant
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5435:5432"
+    volumes:
+      - tenant_postgres_data:/var/lib/postgresql/data
+
+  marketplace-ms-wishlist:
+    build: ./wishlist
+    ports:
+      - "8004:8000"
+    environment:
+      - TENANT_ID=47dd6b24-0b23-46b0-a662-776158d089ba
+      - JWT_SECRET=auth_ms_jwt_secret
+      - DB_HOST=wishlist-db
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=postgres
+    depends_on:
+      - wishlist-db
+
+  wishlist-db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: marketplace-ms-wishlist
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5436:5432"
+    volumes:
+      - wishlist_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  authentication_postgres_data:
+  orders_postgres_data:
+  products_postgres_data:
+  tenant_postgres_data:
+  wishlist_postgres_data:
