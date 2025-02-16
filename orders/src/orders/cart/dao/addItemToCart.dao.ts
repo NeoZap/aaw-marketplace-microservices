@@ -1,6 +1,6 @@
 import { db } from "@src/db";
-import { NewCart } from "@db/schema/orders/cart";
-import * as schema from '@db/schema/orders/cart';
+import { NewCart } from "@db/schema/cart";
+import * as schema from '@db/schema/cart';
 
 export const addItemToCart = async (data: NewCart) => {
     const result = await db

@@ -1,4 +1,4 @@
-import { NewCategory } from "@db/schema/products/categories";
+import { NewCategory } from "@db/schema/categories";
 import { InternalServerErrorResponse } from "@src/commons/patterns"
 import { createNewCategory } from "../dao/createNewCategory.dao";
 

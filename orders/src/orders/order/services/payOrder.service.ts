@@ -1,5 +1,5 @@
 import { BadRequestResponse, InternalServerErrorResponse, NotFoundResponse } from "@src/commons/patterns";
-import { NewPayment } from "@db/schema/orders/payment";
+import { NewPayment } from "@db/schema/payment";
 import { payOrder } from "../dao/payOrder.dao";
 
 export const payOrderService = async (

@@ -1,6 +1,6 @@
 import { db } from "@src/db";
 import { eq, and } from "drizzle-orm";
-import * as schema from '@db/schema/products/products'
+import * as schema from '@db/schema/products'
 
 export const getProductByCategory = async (tenantId: string, category_id: string) => {
     const result = await db

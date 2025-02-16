@@ -1,6 +1,6 @@
 import { db } from "@src/db";
 import { and, eq } from "drizzle-orm";
-import * as schema from "@db/schema/orders/orderDetail";
+import * as schema from "@db/schema/orderDetail";
 
 export const getOrderDetail = async (
     tenant_id: string,

@@ -1,6 +1,6 @@
 import { db } from "@src/db";
 import { eq, and } from "drizzle-orm";
-import * as schema from '@db/schema/wishlist/wishlistDetail';
+import * as schema from '@db/schema/wishlistDetail';
 
 export const getWishlistDetailByWishlistId = async (
     wishlist_id: string,

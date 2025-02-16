@@ -1,10 +1,10 @@
-import { Order, NewOrder } from "@db/schema/orders/order";
-import { NewOrderDetail, OrderDetail } from "@db/schema/orders/orderDetail";
+import { Order, NewOrder } from "@db/schema/order";
+import { NewOrderDetail, OrderDetail } from "@db/schema/orderDetail";
 import { db } from "@src/db";
-import * as schemaCart from "@db/schema/orders/cart";
-import * as schemaOrder from "@db/schema/orders/order";
-import * as schemaOrderDetail from "@db/schema/orders/orderDetail";
-import { Cart } from "@db/schema/orders/cart";
+import * as schemaCart from "@db/schema/cart";
+import * as schemaOrder from "@db/schema/order";
+import * as schemaOrderDetail from "@db/schema/orderDetail";
+import { Cart } from "@db/schema/cart";
 import { and, eq } from "drizzle-orm";
 import { Product } from "@src/types";
 

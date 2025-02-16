@@ -1,5 +1,5 @@
 import { db } from "@src/db";
-import * as schema from '@db/schema/products/categories'
+import * as schema from '@db/schema/categories'
 import { and, eq } from "drizzle-orm";
 
 export const editCategoryById = async (

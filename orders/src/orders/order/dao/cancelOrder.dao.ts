@@ -1,5 +1,5 @@
 import { db } from "@src/db";
-import * as schema from "@db/schema/orders/order";
+import * as schema from "@db/schema/order";
 import { and, eq } from "drizzle-orm";
 
 export const cancelOrder = async (

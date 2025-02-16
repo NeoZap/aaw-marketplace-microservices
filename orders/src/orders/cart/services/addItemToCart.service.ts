@@ -1,4 +1,4 @@
-import { NewCart } from "@db/schema/orders/cart";
+import { NewCart } from "@db/schema/cart";
 import { InternalServerErrorResponse, NotFoundResponse } from "@src/commons/patterns";
 import { addItemToCart } from "../dao/addItemToCart.dao";
 import { User } from "@src/types";

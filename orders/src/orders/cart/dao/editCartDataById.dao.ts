@@ -1,5 +1,5 @@
 import { db } from "@src/db";
-import * as schema from '@db/schema/orders/cart';
+import * as schema from '@db/schema/cart';
 import { and, eq } from "drizzle-orm";
 
 export const editCartDataById = async (

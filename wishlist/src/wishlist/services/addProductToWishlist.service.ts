@@ -1,4 +1,4 @@
-import { NewWishlistDetail } from "@db/schema/wishlist/wishlistDetail";
+import { NewWishlistDetail } from "@db/schema/wishlistDetail";
 import { InternalServerErrorResponse } from "@src/commons/patterns";
 import { addProductToWishlist } from "../dao/addProductToWishlist.dao";
 import { getWishlistById } from "../dao/getWishlistById.dao";

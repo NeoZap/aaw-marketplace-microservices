@@ -1,4 +1,4 @@
-import { NewProduct } from "@db/schema/products/products";
+import { NewProduct } from "@db/schema/products";
 import { InternalServerErrorResponse } from "@src/commons/patterns";
 import { createNewProduct } from "../dao/createNewProduct.dao";
 

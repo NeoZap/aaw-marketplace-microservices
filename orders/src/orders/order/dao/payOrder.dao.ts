@@ -1,8 +1,8 @@
 import { db } from "@src/db";
-import { NewPayment } from "@db/schema/orders/payment";
-import * as schemaPayment from '@db/schema/orders/payment';
-import * as schemaOrder from "@db/schema/orders/order";
-import * as schemaOrderDetail from '@db/schema/orders/orderDetail';
+import { NewPayment } from "@db/schema/payment";
+import * as schemaPayment from '@db/schema/payment';
+import * as schemaOrder from "@db/schema/order";
+import * as schemaOrderDetail from '@db/schema/orderDetail';
 import { and, eq } from "drizzle-orm";
 import { v4 as uuidv4 } from 'uuid';
 
