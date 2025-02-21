@@ -19,6 +19,10 @@ setup_db() {
 
   (
     cd "$service_dir"
+    if [ ! -f ".env" ]; then
+      echo "INFO: .env file not found in '$service_dir'. Copying .env.example..."
+      cp .env.example .env
+    fi
     rm -rf drizzle
     pnpm install && pnpm run generate && pnpm run migrate
     if [ $service_dir == "authentication" ]; then
