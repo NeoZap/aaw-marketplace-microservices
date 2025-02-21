@@ -28,6 +28,7 @@ export const verifyTokenService = async (
         return {
             data: {
                 user,
+                tenant_id
             },
             status: 200
         }

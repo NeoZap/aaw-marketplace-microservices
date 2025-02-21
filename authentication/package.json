@@ -1,14 +1,15 @@
 {
-  "name": "marketplace-ms-authentication",
+  "name": "marketplace",
   "version": "1.0.0",
-  "description": "marketplace-ms-authentication",
+  "description": "marketplace",
   "main": "src/server.ts",
   "scripts": {
     "start": "node dist/server.js",
     "dev": "nodemon --watch src --ext ts --exec ts-node src/server.ts",
     "build": "tsc && tsc-alias",
     "generate": "drizzle-kit generate:pg",
-    "migrate": "tsx src/db/migrate.ts"
+    "migrate": "tsx src/db/migrate.ts",
+    "generate-token": "tsx src/generateAdminToken.ts"
   },
   "author": "",
   "license": "ISC",
@@ -41,5 +42,12 @@
     "tsconfig-paths": "^4.2.0",
     "tsx": "^4.7.1",
     "typescript": "^5.3.3"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "bcrypt",
+      "es5-ext",
+      "esbuild"
+    ]
   }
 }

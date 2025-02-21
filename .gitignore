@@ -6,5 +6,7 @@ npm-debug.log
 .DS_Store
 dist
 .pytest_cache
+__pycache__
 *.py
 *.txt
+.*.yaml

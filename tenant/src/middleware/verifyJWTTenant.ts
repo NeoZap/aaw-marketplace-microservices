@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import axios from "axios";
 import { UnauthenticatedResponse, InternalServerErrorResponse } from "@src/commons/patterns/exceptions";
 
-export const verifyJWT = async (
+export const verifyJWTTenant = async (
     req: Request,
     res: Response,
     next: NextFunction
@@ -14,26 +14,22 @@ export const verifyJWT = async (
         }
 
         const authServiceUrl = process.env.AUTH_MS_URL || "http://localhost:8000";
-        const verifyResponse = await axios.post(`${authServiceUrl}/api/auth/verify-token`, { token });
+
+        const verifyResponse = await axios.post(`${authServiceUrl}/api/auth/verify-admin-token`, { token }, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
 
         if (verifyResponse.status !== 200 || !verifyResponse.data?.user) {
-            return res.status(401).json(new UnauthenticatedResponse("Invalid token").generate());
+            return res.status(401).json(new UnauthenticatedResponse("Invalid admin token").generate());
         }
 
-        const user = verifyResponse.data.user;
-
-        const SERVER_TENANT_ID = process.env.TENANT_ID;
-        console.log("SERVER_TENANT_ID", SERVER_TENANT_ID);
-        console.log("verifyResponse.data.tenant_id", verifyResponse.data.tenant_id);
-        if (SERVER_TENANT_ID && verifyResponse.data.tenant_id !== SERVER_TENANT_ID) {
-            return res.status(401).json(new UnauthenticatedResponse("Invalid tenant").generate());
-        }
-
-        req.body.user = user;
+        req.body.user = verifyResponse.data.user;
         next();
 
     } catch (error) {
-        console.error("Error in verifyJWT:", error);
+        console.error("Error in verifyJWTTenant:", error);
 
         if (axios.isAxiosError(error)) {
             if (error.response) {
@@ -41,8 +37,8 @@ export const verifyJWT = async (
             } else {
                 return res.status(500).json(new InternalServerErrorResponse("Other microservice unavailable").generate());
             }
-
         }
+
         return res.status(401).json(new UnauthenticatedResponse("Invalid token").generate());
     }
 };

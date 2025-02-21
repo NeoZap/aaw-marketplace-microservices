@@ -6,8 +6,10 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - TENANT_ID=47dd6b24-0b23-46b0-a662-776158d089ba
+      - TENANT_ID=159892ea-80f4-4306-a494-9e5e487bb832
       - JWT_SECRET=auth_ms_jwt_secret
+      - ADMIN_JWT_SECRET=admin_auth_ms_jwt_secret
+      - ADMIN_TENANT_ID=159892ea-80f4-4306-a494-9e5e487bb832
       - DB_HOST=authentication-db
       - DB_PORT=5432
       - DB_USER=postgres
@@ -23,7 +25,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
-      - "5437:5432"
+      - "5000:5432"
     volumes:
       - authentication_postgres_data:/var/lib/postgresql/data
 
@@ -32,14 +34,14 @@ services:
     ports:
       - "8001:8000"
     environment:
-      - TENANT_ID=47dd6b24-0b23-46b0-a662-776158d089ba
-      - JWT_SECRET=auth_ms_jwt_secret
+      - TENANT_ID=159892ea-80f4-4306-a494-9e5e487bb832
+      - AUTH_MS_URL=http://marketplace-ms-authentication:8000
       - DB_HOST=orders-db
       - DB_PORT=5432
       - DB_USER=postgres
       - DB_PASSWORD=postgres
       - DB_NAME=postgres
-      - PRODUCT_MS_URL=http://marketplace-ms-products:8000/api
+      - PRODUCT_MS_URL=http://marketplace-ms-products:8000
     depends_on:
       - orders-db
 
@@ -50,7 +52,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
-      - "5433:5432"
+      - "5001:5432"
     volumes:
       - orders_postgres_data:/var/lib/postgresql/data
 
@@ -59,13 +61,14 @@ services:
     ports:
       - "8002:8000"
     environment:
-      - TENANT_ID=47dd6b24-0b23-46b0-a662-776158d089ba
-      - JWT_SECRET=auth_ms_jwt_secret
+      - TENANT_ID=159892ea-80f4-4306-a494-9e5e487bb832
+      - AUTH_MS_URL=http://marketplace-ms-authentication:8000
       - DB_HOST=products-db
       - DB_PORT=5432
       - DB_USER=postgres
       - DB_PASSWORD=postgres
       - DB_NAME=postgres
+      - TENANT_MS_URL=http://marketplace-ms-tenant:8000
     depends_on:
       - products-db
 
@@ -76,7 +79,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
-      - "5434:5432"
+      - "5002:5432"
     volumes:
       - products_postgres_data:/var/lib/postgresql/data
 
@@ -85,8 +88,8 @@ services:
     ports:
       - "8003:8000"
     environment:
-      - TENANT_ID=47dd6b24-0b23-46b0-a662-776158d089ba
-      - JWT_SECRET=auth_ms_jwt_secret
+      - TENANT_ID=159892ea-80f4-4306-a494-9e5e487bb832
+      - AUTH_MS_URL=http://marketplace-ms-authentication:8000
       - DB_HOST=tenant-db
       - DB_PORT=5432
       - DB_USER=postgres
@@ -102,7 +105,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
-      - "5435:5432"
+      - "5003:5432"
     volumes:
       - tenant_postgres_data:/var/lib/postgresql/data
 
@@ -111,8 +114,8 @@ services:
     ports:
       - "8004:8000"
     environment:
-      - TENANT_ID=47dd6b24-0b23-46b0-a662-776158d089ba
-      - JWT_SECRET=auth_ms_jwt_secret
+      - TENANT_ID=159892ea-80f4-4306-a494-9e5e487bb832
+      - AUTH_MS_URL=http://marketplace-ms-authentication:8000
       - DB_HOST=wishlist-db
       - DB_PORT=5432
       - DB_USER=postgres
@@ -128,7 +131,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
-      - "5436:5432"
+      - "5004:5432"
     volumes:
       - wishlist_postgres_data:/var/lib/postgresql/data
 
