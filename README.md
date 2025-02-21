@@ -30,6 +30,7 @@ docker compose up
 chmod +x start-and-migrate.sh
 ./start-and-migrate.sh
 ```
+> `start-and-migrate.sh` will start the microservices, run the migrations, and generate admin user.
 
 ## Environment Variables
 

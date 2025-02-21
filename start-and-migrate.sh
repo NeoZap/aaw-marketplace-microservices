@@ -21,6 +21,9 @@ setup_db() {
     cd "$service_dir"
     rm -rf drizzle
     pnpm install && pnpm run generate && pnpm run migrate
+    if [ $service_dir == "authentication" ]; then
+      pnpm run generate-token
+    fi
   )
   echo "SUCCESS: $service_name started."
 }
