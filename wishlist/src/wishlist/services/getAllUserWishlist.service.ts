@@ -1,6 +1,6 @@
 import { InternalServerErrorResponse, NotFoundResponse } from "@src/commons/patterns";
 import { getAllUserWishlist } from "../dao/getAllUserWishlist.dao";
-import { User } from "@src/types";
+import { User } from "@src/commons/types";
 
 export const getAllUserWishlistService = async (
     user: User

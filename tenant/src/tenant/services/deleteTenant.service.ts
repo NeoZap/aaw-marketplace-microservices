@@ -1,6 +1,6 @@
 import { InternalServerErrorResponse, NotFoundResponse, UnauthorizedResponse } from "@src/commons/patterns"
 import { deleteTenantById } from "../dao/deleteTenantById.dao";
-import { User } from "@src/types/user";
+import { User } from "@src/commons/types/user";
 import { getTenantById } from "../dao/getTenantById.dao";
 
 export const deleteTenantService = async (

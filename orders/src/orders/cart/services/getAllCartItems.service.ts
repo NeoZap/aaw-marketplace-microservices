@@ -1,6 +1,6 @@
 import { InternalServerErrorResponse, NotFoundResponse } from "@src/commons/patterns";
 import { getAllCartItems } from "../dao/getAllCartItems.dao";
-import { User } from "@src/types";
+import { User } from "@src/commons/types";
 
 export const getAllCartItemsService = async (
     user: User,

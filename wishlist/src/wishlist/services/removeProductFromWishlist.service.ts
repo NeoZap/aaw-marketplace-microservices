@@ -2,7 +2,7 @@ import { InternalServerErrorResponse } from "@src/commons/patterns";
 import { getWishlistDetailById } from "../dao/getWishlistDetailById.dao";
 import { getWishlistById } from "../dao/getWishlistById.dao";
 import { removeProductFromWishlist } from "../dao/removeProductFromWishlist.dao";
-import { User } from "@src/types";
+import { User } from "@src/commons/types";
 
 export const removeProductFromWishlistService = async (
     id: string,
@@ -17,7 +17,7 @@ export const removeProductFromWishlistService = async (
         if (!user.id) {
             return new InternalServerErrorResponse('User ID is missing').generate();
         }
-        
+
         const wishlistDetail = await getWishlistDetailById(id);
         if (!wishlistDetail) {
             return new InternalServerErrorResponse('Wishlist detail not found').generate();

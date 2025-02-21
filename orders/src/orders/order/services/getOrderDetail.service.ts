@@ -1,7 +1,7 @@
 import { InternalServerErrorResponse, NotFoundResponse, UnauthorizedResponse } from "@src/commons/patterns";
 import { getOrderById } from "../dao/getOrderById.dao";
 import { getOrderDetail } from "../dao/getOrderDetail.dao";
-import { User } from "@src/types";
+import { User } from "@src/commons/types";
 
 export const getOrderDetailService = async (
     user: User,

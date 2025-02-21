@@ -2,7 +2,7 @@ import { getAllCartItems } from "@src/orders/cart/dao/getAllCartItems.dao";
 import { BadRequestResponse, InternalServerErrorResponse, NotFoundResponse } from "@src/commons/patterns";
 import { createOrder } from "../dao/createOrder.dao";
 import axios, { AxiosResponse } from "axios";
-import { User, Product } from "@src/types";
+import { User, Product } from "@src/commons/types";
 
 export const placeOrderService = async (
     user: User,
