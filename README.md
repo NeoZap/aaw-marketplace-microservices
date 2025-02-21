@@ -11,26 +11,13 @@ REST API for a marketplace application built with Express.js, PostgreSQL, and Dr
 - Docker and Docker Compose
 - PostgreSQL (if running locally)
 
-## Quick Start with Docker
-
-```bash
-# Clone the repository
-git clone <repository-url>
-
-# Copy environment file
-cp .env.example .env
-
-# Start with Docker Compose
-docker compose up
-```
-
-## Local Development Setup
+## Quick Start with Docker Compose
 
 ```bash
 chmod +x start-and-migrate.sh
 ./start-and-migrate.sh
 ```
-> `start-and-migrate.sh` will start the microservices, run the migrations, and generate admin user.
+> `start-and-migrate.sh` will use `docker-compose` to start the microservices, run the migrations, and generate admin user.
 
 ## Environment Variables
 
